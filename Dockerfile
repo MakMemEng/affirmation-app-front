@@ -18,4 +18,4 @@ RUN yarn install
 
 COPY . ./
 
-# RUN yarn run build
+RUN yarn run build
