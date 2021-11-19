@@ -2,7 +2,7 @@
   <v-app>
     <home-app-bar
       :menus="menus"
-      :img-height="imgHeight"
+      :img-height="imgheight"
     />
 
     <v-img
@@ -10,12 +10,12 @@
       dark
       src="https://picsum.photos/id/20/1920/1080?blur=5"
       gradient="to top right, rgba(19,84,122,.6), rgba(128,208,199,.9)"
-      :height="imgHeight"
+      :height="imgheight"
     >
       <v-row
         align="center"
         justify="center"
-        :style="{ height: `${imgHeight}px` }"
+        :style="{ height: `${imgheight}px` }"
       >
         <v-col
           cols="12"
@@ -92,7 +92,7 @@ export default {
   },
   data () {
     return {
-      imgHeight: 500,
+      imgheight: 500,
       menus: [
         { title: 'about', subtitle: 'このサイトはブログ"独学プログラマ"で公開されているチュートリアルのデモアプリケーションです' },
         { title: 'contact', subtitle: 'お気軽にご連絡を' }
