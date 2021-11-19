@@ -78,7 +78,6 @@ export default {
       default: 0
     }
   },
-  // data (context: { $config: { appName: "BizPlanner" } })
   data ({ $store }) {
     return {
       scrollY: 0,
