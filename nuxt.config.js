@@ -1,6 +1,11 @@
 export default {
+  mode: 'spa',
+
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
+
+  // Doc: https://ja.nuxtjs.org/blog/going-full-static/
+  target: 'server',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -43,8 +48,16 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    // Doc: https://www.npmjs.com/package/nuxt-i18n
+    'nuxt-i18n'
   ],
+
+  // public ENV
+  // Doc: https://nuxtjs.org/guide/runtime-config/
+  publicRuntimeConfig: {
+    appName: process.env.APP_NAME
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
@@ -66,6 +79,30 @@ export default {
           background: 'f6f6f4',
           appblue: '1867C0'
         }
+      }
+    }
+  },
+
+  // Doc: https://nuxt-community.github.io/nuxt-i18n/basic-usage.html#nuxt-link
+  i18n: {
+    locales: ['ja', 'en'],
+    defaultLocale: 'ja',
+    // no_prefix => ルート名に__jaを追加しない
+    strategy: 'no_prefix',
+    // Doc: https://kazupon.github.io/vue-i18n/api/#properties
+    vueI18n: {
+      // 翻訳対象のキーがない場合に参照される言語
+      // "login": "ログイン"
+      fallbackLocale: 'ja',
+      // true => i18nの警告を完全に表示しない(default: false)
+      // silentTranslationWarn: true,
+      // フォールバック時に警告を発生させる(default: false)
+      // true => 警告を発生させない(翻訳のキーが存在しない場合のみ警告)
+      silentFallbackWarn: true,
+      // 翻訳データ
+      messages: {
+        ja: require('./locales/ja.json'),
+        en: require('./locales/en.json')
       }
     }
   },
