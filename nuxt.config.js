@@ -1,11 +1,6 @@
 export default {
-  mode: 'spa',
-
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
-
-  // Doc: https://ja.nuxtjs.org/blog/going-full-static/
-  target: 'server',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -33,6 +28,11 @@ export default {
   plugins: [
     'plugins/axios'
   ],
+
+  rules: {
+    // 追加
+    'vue/valid-v-slot': 'off'
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
