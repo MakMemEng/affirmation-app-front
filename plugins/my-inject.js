@@ -11,6 +11,19 @@ class MyInject {
     const title = this.app.i18n.t(jsonPath)
     return title
   }
+
+  // 日付のフォーマット変換
+  dataFormat (dataStr) {
+    const dateTimeFormat = new Intl.DateTimeFormat(
+      'ja', { dateStyle: 'medium', timeStyle: 'short' }
+    )
+    return dateTimeFormat.format(new Date(dataStr))
+  }
+
+  // アファメーションリンク
+  affirmationLinkTo (id, name = 'affirmation-id-dashboard') {
+    return { name, params: { id } }
+  }
 }
 
 export default ({ app }, inject) => {
