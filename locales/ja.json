@@ -17,7 +17,17 @@
     "account": {
       "settings": "アカウント設定",
       "password": "パスワード変更"
+    },
+    "affirmation": {
+      "id": {
+        "dashboard": "ダッシュボード",
+        "layouts": "レイアウト",
+        "pages": "ページ",
+        "components": "コンポーネント",
+        "settings": "設定",
+        "help": "ヘルプ"
       }
+    }
 
   }
 }
