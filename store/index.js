@@ -23,6 +23,19 @@ export const state = () => ({
 
 export const getters = {}
 
-export const mutations = {}
+export const mutations = {
+  setCurrentAffirmation (state, payload) {
+    state.affirmation.current = payload
+  }
+}
 
-export const actions = {}
+export const actions = {
+  // { state, getters, commit, dispatch, rootState, rootGetters }
+  // rootState => ルート(store/index.js)のstateを取得(rootState = state)
+  getCurrentAffirmation ({ state, commit }, params) {
+    const id = Number(params.id)
+    const currentAffirmation =
+      state.affirmation.list.find(affirmation => affirmation.id === id) || null
+    commit('setCurrentAffirmation', currentAffirmation)
+  }
+}

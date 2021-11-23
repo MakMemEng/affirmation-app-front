@@ -27,6 +27,7 @@
 
 <script>
 export default {
+  middleware: 'get-affirmation-current',
   data () {
     return {
       drawer: null
