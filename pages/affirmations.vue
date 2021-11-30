@@ -45,6 +45,7 @@
                     block
                     :height="card.height"
                     :elevation="card.elevation"
+                    @clicked="createAffirmation"
                   >
                     <div>
                       <v-icon
@@ -150,7 +151,6 @@
 
 <script>
 import homeImg from '~/assets/images/logged-in/home.png'
-
 export default {
   layout: 'logged-in',
   data () {
@@ -176,7 +176,28 @@ export default {
           width: 150,
           value: 'updatedAt'
         }
-      ]
+      ],
+      affirmations: []
+    }
+  },
+  method: {
+    async createAffirmation () {
+      const url = '/api/v1/post'
+      const affirmation = {
+        title: this.title,
+        body: this.body
+      }
+      await this.$axios.$post(url, { affirmation })
+        .then(response => this.createSuccessful(response))
+        .catch(error => this.createFailure(error))
+
+      const response = this.$axios
+        .$get(url)
+        .catch((error) => {
+          console.log('response error', error)
+          return false
+        })
+      this.affirmation = response.data.affirmations
     }
   },
   computed: {
