@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  middleware: 'get-affirmation-current',
+  middleware: ['get-affirmation-list', 'get-affirmation-current'],
   data () {
     return {
       drawer: null

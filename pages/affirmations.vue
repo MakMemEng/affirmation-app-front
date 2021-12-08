@@ -45,8 +45,8 @@
                     block
                     :height="card.height"
                     :elevation="card.elevation"
-                    @clicked="createAffirmation"
                   >
+                    <!-- ↑ @clicked="createAffirmation" -->
                     <div>
                       <v-icon
                         size="24"
@@ -82,7 +82,7 @@
                     <v-card-title
                       class="pb-1 d-block text-truncate"
                     >
-                      {{ affirmation.name }}
+                      {{ affirmation.title }}
                     </v-card-title>
                     <v-card-text
                       class="caption"
@@ -92,7 +92,7 @@
                       >
                         mdi-update
                       </v-icon>
-                      {{ $my.dataFormat(affirmation.updatedAt) }}
+                      {{ $my.dataFormat(affirmation.updated_at) }}
                     </v-card-text>
                   </v-card>
                 </v-col>
@@ -128,19 +128,19 @@
             hide-default-footer
           >
             <template
-              #[`item.name`]="{ item }"
+              #[`item.title`]="{ item }"
             >
               <nuxt-link
                 :to="$my.affirmationLinkTo(item.id)"
                 class="text-decoration-none"
               >
-                {{ item.name }}
+                {{ item.title }}
               </nuxt-link>
             </template>
             <template
-              #[`item.updatedAt`]="{ item }"
+              #[`item.updated_at`]="{ item }"
             >
-              {{ $my.dataFormat(item.updatedAt) }}
+              {{ $my.dataFormat(item.updated_at) }}a
             </template>
           </v-data-table>
         </v-col>
@@ -152,7 +152,9 @@
 <script>
 import homeImg from '~/assets/images/logged-in/home.png'
 export default {
+  name: 'DefaultLoggedIn',
   layout: 'logged-in',
+  middleware: ['get-affirmation-list'],
   data () {
     return {
       homeImg,
@@ -169,43 +171,44 @@ export default {
       tableHeaders: [
         {
           text: '名前',
-          value: 'name'
+          value: 'title'
         },
         {
           text: '更新日',
           width: 150,
-          value: 'updatedAt'
+          value: 'updated_at'
         }
-      ],
-      affirmations: []
+      ]
+      // ,
+      // affirmations: []
     }
   },
-  method: {
-    async createAffirmation () {
-      const url = '/api/v1/post'
-      const affirmation = {
-        title: this.title,
-        body: this.body
-      }
-      await this.$axios.$post(url, { affirmation })
-        .then(response => this.createSuccessful(response))
-        .catch(error => this.createFailure(error))
+  // method: {
+  //   async createAffirmation () {
+  //     const url = '/api/v1/post'
+  //     const affirmation = {
+  //       title: this.title,
+  //       body: this.body
+  //     }
+  //     await this.$axios.$post(url, { affirmation })
+  //       .then(response => this.createSuccessful(response))
+  //       .catch(error => this.createFailure(error))
 
-      const response = this.$axios
-        .$get(url)
-        .catch((error) => {
-          console.log('response error', error)
-          return false
-        })
-      this.affirmation = response.data.affirmations
-    }
-  },
+  //     const response = this.$axios
+  //       .$get(url)
+  //       .catch((error) => {
+  //         console.log('response error', error)
+  //         return false
+  //       })
+  //     this.affirmation = response.data.affirmations
+  //   }
+  // },
   computed: {
     recentAffirmations () {
       const copyAffirmations = Array.from(this.$store.state.affirmation.list)
       return copyAffirmations.sort((a, b) => {
-        if (a.updatedAt > b.updatedAt) { return -1 }
-        if (a.updatedAt < b.updatedAt) { return 1 }
+        if (a.updated_at > b.updated_at) { return -1 }
+        if (a.updated_at < b.updated_at) { return 1 }
         return 0
       })
     }
