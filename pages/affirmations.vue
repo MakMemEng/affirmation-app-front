@@ -152,7 +152,7 @@
 <script>
 import homeImg from '~/assets/images/logged-in/home.png'
 export default {
-  name: 'DefaultLoggedIn',
+  name: 'PagesAffirmations',
   layout: 'logged-in',
   middleware: ['get-affirmation-list'],
   data () {

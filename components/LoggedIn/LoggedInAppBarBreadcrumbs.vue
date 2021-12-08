@@ -34,10 +34,14 @@ export default {
         { text: this.$my.pageTitle(currentRouteName) }
       ]
       // breakpoint.xs => 600未満の場合にtrueを返す
-      if (currentRouteName.match(/affirmation/) && !this.$vuetify.breakpoint.xs) {
+      const currentAffirmation = this.$store.state.affirmation.current
+      if (
+        currentAffirmation &&
+        currentRouteName.match(/affirmation/) &&
+        !this.$vuetify.breakpoint.xs
+      ) {
         // プロジェクト名を表示する
-        const currentAffirmation = this.$store.state.affirmation.current
-        items.unshift({ text: currentAffirmation.name })
+        items.unshift({ text: currentAffirmation.title })
       }
       return items
     }

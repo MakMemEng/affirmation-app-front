@@ -85,6 +85,7 @@ import HomeContact from '~/components/Home/HomeContact'
 import AppFooter from '~/components/App/AppFooter.vue'
 
 export default {
+  name: 'PagesIndex',
   components: {
     HomeAbout,
     HomeContact,

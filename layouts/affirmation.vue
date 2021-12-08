@@ -27,6 +27,7 @@
 
 <script>
 export default {
+  name: 'LayoutsAffirmation',
   middleware: ['get-affirmation-list', 'get-affirmation-current'],
   data () {
     return {

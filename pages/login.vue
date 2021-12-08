@@ -44,6 +44,7 @@
 <script>
 import UserFormCard from '../components/User/UserFormCard.vue'
 export default {
+  name: 'PagesLogin',
   components: { UserFormCard },
   layout: 'before-login',
   data ({ $store }) {
