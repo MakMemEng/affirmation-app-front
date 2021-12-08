@@ -54,9 +54,12 @@ export const actions = {
     commit('setAffirmationList', affirmations)
   },
   getCurrentAffirmation ({ state, commit }, params) {
-    const id = Number(params.id)
-    const currentAffirmation =
-      state.affirmation.list.find(affirmation => affirmation.id === id) || null
+    let currentAffirmation = null
+    if (params && params.id) {
+      const id = Number(params.id)
+      currentAffirmation =
+        state.affirmation.list.find(affirmation => affirmation.id === id) || null
+    }
     commit('setCurrentAffirmation', currentAffirmation)
   },
   getCurrentUser ({ commit }, user) {
