@@ -53,7 +53,8 @@ export default {
       loading: false,
       // TODO 本番環境では削除
       params: { auth: { email: 'user1@example.com', password: 'password' } },
-      redirectPath: $store.state.loggedIn.homePath
+      redirectPath: $store.state.loggedIn.rememberPath,
+      loggedInHomePath: $store.state.loggedIn.homePath
     }
   },
   methods: {
@@ -67,16 +68,12 @@ export default {
       this.loading = false
     },
     authSuccessful (response) {
-      console.log('authSuccessful', response)
-      // TODO ログイン処理
+      // ログイン処理
       this.$auth.login(response)
-      // TODO log test
-      console.log('token', this.$auth.token)
-      console.log('expires', this.$auth.expires)
-      console.log('payload', this.$auth.payload)
-      console.log('user', this.$auth.user)
-      // TODO 記憶ルートリダイレクト
+      // 記憶ルートリダイレクト
       this.$router.push(this.redirectPath)
+      // 記憶ルートを初期値に戻す
+      this.$store.dispatch('getRememberPath', this.loggedInHomePath)
     },
     authFailure ({ response }) {
       if (response && response.status === 404) {
