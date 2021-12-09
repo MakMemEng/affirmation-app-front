@@ -91,6 +91,7 @@ export default {
     HomeContact,
     AppFooter
   },
+  middleware: ['logged-in-redirect'],
   data () {
     return {
       imgheight: 500,
