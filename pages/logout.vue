@@ -1,8 +1,10 @@
 <script>
 export default {
+  name: 'PagesLogout',
   // ページをレンダリングする前に実行される
   // nuxtServerInitの後
-  middleware ({ redirect }) {
+  async middleware ({ $auth, redirect }) {
+    await $auth.logout()
     return redirect('/')
   }
   // asyncData () の前

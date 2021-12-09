@@ -27,7 +27,8 @@
 
 <script>
 export default {
-  middleware: 'get-affirmation-current',
+  name: 'LayoutsAffirmation',
+  middleware: ['authentication', 'get-affirmation-list', 'get-affirmation-current'],
   data () {
     return {
       drawer: null

@@ -85,11 +85,13 @@ import HomeContact from '~/components/Home/HomeContact'
 import AppFooter from '~/components/App/AppFooter.vue'
 
 export default {
+  name: 'PagesIndex',
   components: {
     HomeAbout,
     HomeContact,
     AppFooter
   },
+  middleware: ['logged-in-redirect'],
   data () {
     return {
       imgheight: 500,

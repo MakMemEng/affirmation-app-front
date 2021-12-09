@@ -10,5 +10,7 @@
 
 <script>
 export default {
+  name: 'LayoutsLoggedIn',
+  middleware: ['authentication']
 }
 </script>

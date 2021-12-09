@@ -9,10 +9,10 @@
         @submit.prevent="login"
       >
         <user-form-email
-          :email.sync="params.user.email"
+          :email.sync="params.auth.email"
         />
         <user-form-password
-          :password.sync="params.user.password"
+          :password.sync="params.auth.password"
         />
         <v-card-actions>
           <nuxt-link
@@ -44,20 +44,43 @@
 <script>
 import UserFormCard from '../components/User/UserFormCard.vue'
 export default {
+  name: 'PagesLogin',
   components: { UserFormCard },
   layout: 'before-login',
   data ({ $store }) {
     return {
       isValid: false,
       loading: false,
-      params: { user: { email: '', password: '' } },
-      redirectPath: $store.state.loggedIn.homePath
+      params: { auth: { email: '', password: '' } },
+      redirectPath: $store.state.loggedIn.rememberPath,
+      loggedInHomePath: $store.state.loggedIn.homePath
     }
   },
   methods: {
-    login () {
+    async login () {
       this.loading = true
+      if (this.isValid) {
+        await this.$axios.$post('/api/v1/auth_token', this.params)
+          .then(response => this.authSuccessful(response))
+          .catch(error => this.authFailure(error))
+      }
+      this.loading = false
+    },
+    authSuccessful (response) {
+      // ログイン処理
+      this.$auth.login(response)
+      // 記憶ルートリダイレクト
       this.$router.push(this.redirectPath)
+      // 記憶ルートを初期値に戻す
+      this.$store.dispatch('getRememberPath', this.loggedInHomePath)
+    },
+    authFailure ({ response }) {
+      if (response && response.status === 404) {
+        const msg = 'ユーザーが見つかりません'
+        return this.$store.dispatch('getToast', { msg })
+      }
+      // エラー処理
+      return this.$my.apiErrorHandler(response)
     }
   }
 }

@@ -7,6 +7,7 @@
 
 <script>
 export default {
+  name: 'PagesAffirmation',
   layout: 'affirmation',
   // falseを返すページのアクセスを制限する
   validate ({ store, route }) {
