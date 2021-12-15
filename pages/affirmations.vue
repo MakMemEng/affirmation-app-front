@@ -185,7 +185,7 @@ export default {
   },
   // method: {
   //   async createAffirmation () {
-  //     const url = '/api/v1/post'
+  //     const url = '/api/v1/posts'
   //     const affirmation = {
   //       title: this.title,
   //       body: this.body
