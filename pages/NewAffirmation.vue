@@ -12,13 +12,9 @@
         <affirmation-form-title
           :title.sync="params.title"
         />
-        <!-- :title.sync="params.affirmation.title" -->
-        title => {{ title }}
         <affirmation-form-body
           :body.sync="params.body"
         />
-        <!-- :body.sync="params.affirmation.body" -->
-        body => {{ body }}
 
         <v-card-text
           class="px-0"
@@ -36,8 +32,6 @@
           </v-btn>
         </v-card-text>
       </v-form>
-      <pre>{{ $data }}</pre>
-      {{ params }}
     </template>
   </affirmation-form-card>
 </template>
@@ -61,18 +55,15 @@ export default {
   methods: {
     async newPost () {
       this.loading = true
+      this.errors = []
       const url = '/api/v1/posts'
       if (this.isValid) {
         await this.$axios.$post(url, this.params)
           .then((response) => {
             this.title = response.title
             this.body = response.body
+            this.$router.push('/affirmations')
           })
-        // 記憶ルートリダイレクト
-        this.$router.push(this.redirectPath)
-        // 記憶ルートを初期値に戻す
-        this.$store.dispatch('getRememberPath', this.loggedInHomePath)
-        this.errors = []
           .catch((e) => {
             this.errors = e.data.errors
           })

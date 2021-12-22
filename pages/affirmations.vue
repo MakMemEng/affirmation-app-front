@@ -45,8 +45,8 @@
                     block
                     :height="card.height"
                     :elevation="card.elevation"
+                    to="/NewAffirmation"
                   >
-                    <!-- ↑ @clicked="createAffirmation" -->
                     <div>
                       <v-icon
                         size="24"
@@ -66,7 +66,7 @@
 
                 <!-- 最近のアファメーション -->
                 <v-col
-                  v-for="(affirmation, i) in recentAffirmations.slice(0, 2)"
+                  v-for="(affirmation, i) in recentAffirmations.slice(0, 3)"
                   :key="`card-affirmation-${i}`"
                   cols="12"
                   :sm="card.sm"
@@ -179,30 +179,8 @@ export default {
           value: 'updated_at'
         }
       ]
-      // ,
-      // affirmations: []
     }
   },
-  // method: {
-  //   async createAffirmation () {
-  //     const url = '/api/v1/posts'
-  //     const affirmation = {
-  //       title: this.title,
-  //       body: this.body
-  //     }
-  //     await this.$axios.$post(url, { affirmation })
-  //       .then(response => this.createSuccessful(response))
-  //       .catch(error => this.createFailure(error))
-
-  //     const response = this.$axios
-  //       .$get(url)
-  //       .catch((error) => {
-  //         console.log('response error', error)
-  //         return false
-  //       })
-  //     this.affirmation = response.data.affirmations
-  //   }
-  // },
   computed: {
     recentAffirmations () {
       const copyAffirmations = Array.from(this.$store.state.affirmation.list)

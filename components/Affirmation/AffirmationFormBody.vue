@@ -1,6 +1,7 @@
 <template>
   <v-text-field
     v-model="setBody"
+    height="250"
     :rules="rules"
     :counter="max"
     label="内容を入力"
