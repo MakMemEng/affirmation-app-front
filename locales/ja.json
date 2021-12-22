@@ -27,7 +27,9 @@
         "settings": "設定",
         "help": "ヘルプ"
       }
-    }
+    },
+    "NewAffirmation": "新規投稿",
+    "EditAffirmation": "編集"
   },
   "error": {
     "Unauthorized": "認証に失敗しました",
