@@ -35,6 +35,9 @@ export const state = () => ({
     msg: null,
     color: 'error',
     timeout: 4000
+  },
+  comment: {
+    list: []
   }
 })
 
@@ -64,6 +67,9 @@ export const mutations = {
   },
   setRememberPath (state, payload) {
     state.loggedIn.rememberPath = payload
+  },
+  setCommentList (state, payload) {
+    state.comment.list = payload
   }
 }
 
@@ -110,5 +116,29 @@ export const actions = {
     }
     params = params || {}
     commit('setRememberPath', { name, params })
+  },
+  getCommentList ({ commit }, comments) {
+    comments = comments || []
+    commit('setCommentList', comments)
   }
+  // ,
+  // getCurrentComment ({ state, commit }, params) {
+  //   let currentComment = null
+  //   if (params && params.id) {
+  //     const id = Number(params.id)
+  //     currentComment =
+  //       state.affirmation.list.find(affirmation => affirmation.id === id) || null
+  //   }
+  //   commit('setCurrentComment', currentComment)
+  // },
+  // getCommentList ({ state, commit }, params) {
+  //   comments = comments || []
+  //   let commentList = null
+  //   if (params && params.id) {
+  //     const id = Number(params.id)
+  //     commentList =
+  //       state.affirmation.find(id).comment.list || null
+  //   }
+  //   commit('setCommentList', commentList)
+  // }
 }

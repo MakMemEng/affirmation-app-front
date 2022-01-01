@@ -140,7 +140,7 @@
             <template
               #[`item.updated_at`]="{ item }"
             >
-              {{ $my.dataFormat(item.updated_at) }}a
+              {{ $my.dataFormat(item.updated_at) }}
             </template>
           </v-data-table>
         </v-col>

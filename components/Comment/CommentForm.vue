@@ -1,9 +1,7 @@
 <template>
-  <v-textarea
-    v-model="setBody"
-    auto-grow
-    rows="3"
-    no-resize
+  <v-text-field
+    v-model="setComment"
+    height="150"
     :rules="rules"
     :counter="max"
     label="内容を入力"
@@ -15,7 +13,7 @@
 <script>
 export default {
   props: {
-    body: {
+    comment: {
       type: String,
       default: ''
     },
@@ -25,7 +23,7 @@ export default {
     }
   },
   data () {
-    const max = 400
+    const max = 200
     return {
       max,
       rules: [
@@ -37,9 +35,9 @@ export default {
     }
   },
   computed: {
-    setBody: {
-      get () { return this.body },
-      set (newVal) { return this.$emit('update:body', newVal) }
+    setComment: {
+      get () { return this.comment },
+      set (newVal) { return this.$emit('update:comment', newVal) }
     }
   }
 }

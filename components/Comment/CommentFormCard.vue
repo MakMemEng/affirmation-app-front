@@ -20,11 +20,11 @@
       <v-card
         flat
         width="80%"
-        max-width="550"
+        max-width="320"
         color="transparent"
       >
         <slot
-          name="affirmation-form-card-content"
+          name="comment-form-card-content"
         />
       </v-card>
     </v-row>
